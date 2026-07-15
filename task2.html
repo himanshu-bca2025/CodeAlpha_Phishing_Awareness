@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phishing Awareness Training - CodeAlpha</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #333;
+        }
+        .presentation-container {
+            width: 90%;
+            max-width: 900px;
+            height: 80vh;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            background: #0056b3;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .slides-wrapper {
+            flex-grow: 1;
+            position: relative;
+            padding: 30px;
+            overflow-y: auto;
+        }
+        .slide {
+            display: none;
+            animation: fadeInSlide 0.6s ease-in-out;
+        }
+        .slide.active {
+            display: block;
+        }
+        h2 {
+            color: #0056b3;
+            border-bottom: 2px solid #0056b3;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        p { font-size: 18px; line-height: 1.6; }
+        
+        /* Point-by-Point Animation */
+        ul { list-style-type: none; padding-left: 0; }
+        ul li {
+            background: #f4f7f6;
+            margin-bottom: 15px;
+            padding: 15px;
+            border-left: 5px solid #0056b3;
+            border-radius: 4px;
+            font-size: 17px;
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+        
+        .slide.active ul li {
+            animation: slideInLeft 0.5s forwards ease-out;
+        }
+        /* Staggered delays for list items */
+        .slide.active ul li:nth-child(1) { animation-delay: 0.2s; }
+        .slide.active ul li:nth-child(2) { animation-delay: 0.5s; }
+        .slide.active ul li:nth-child(3) { animation-delay: 0.8s; }
+        .slide.active ul li:nth-child(4) { animation-delay: 1.1s; }
+        .slide.active ul li:nth-child(5) { animation-delay: 1.4s; }
+
+        @keyframes fadeInSlide {
+            from { opacity: 0; transform: scale(0.98); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes slideInLeft {
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* Controls */
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 30px;
+            background: #f1f1f1;
+            border-top: 1px solid #ddd;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background: #0056b3;
+            color: white;
+            transition: background 0.3s;
+        }
+        button:hover { background: #004494; }
+        button:disabled { background: #ccc; cursor: not-allowed; }
+
+        /* Quiz Styles */
+        .question { font-weight: bold; margin-top: 20px; font-size: 18px; }
+        .options { margin-top: 10px; margin-bottom: 20px; font-size: 16px; }
+        .options label { display: block; margin-bottom: 8px; cursor: pointer; }
+        .feedback { font-weight: bold; margin-top: 5px; display: none; }
+        .correct-text { color: #28a745; }
+        .wrong-text { color: #dc3545; }
+        #finalResult { text-align: center; font-size: 20px; font-weight: bold; margin-top: 20px; }
+        .quiz-submit-btn { width: 100%; background: #28a745; font-size: 18px; padding: 12px; }
+        .quiz-submit-btn:hover { background: #218838; }
+
+    </style>
+</head>
+<body>
+
+<div class="presentation-container">
+    <div class="header">
+        Phishing Awareness Training - CodeAlpha
+    </div>
+    
+    <div class="slides-wrapper">
+        
+        <!-- Slide 1 -->
+        <div class="slide active" id="slide-1">
+            <h2>1. What is Phishing?</h2>
+            <p>Phishing is a highly deceptive cyber attack. Attackers disguise themselves as trusted entities (like banks, your employer, or popular websites) to manipulate you into sharing sensitive information.</p>
+            <ul>
+                <li><strong>The Goal:</strong> Stealing passwords, credit card numbers, or personal identity details.</li>
+                <li><strong>The Medium:</strong> Emails, SMS (Smishing), Voice calls (Vishing), or fake social media messages.</li>
+                <li><strong>The Danger:</strong> It relies on human error rather than advanced hacking, making it very dangerous.</li>
+            </ul>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="slide" id="slide-2">
+            <h2>2. Recognizing Fake Emails & Websites</h2>
+            <p>Attackers create clones of real websites and emails. Here is how to spot them:</p>
+            <ul>
+                <li><strong>Check the URL:</strong> Look for typos like "amaz0n.com" or "paypaI.com" (capital i instead of L).</li>
+                <li><strong>HTTPS:</strong> Ensure the site has "https://" and a padlock, though some fake sites use this too!</li>
+                <li><strong>Generic Greetings:</strong> Real companies use your name. Scammers use "Dear Customer" or "Dear User".</li>
+                <li><strong>Sense of Urgency:</strong> Phrases like "Your account will be suspended in 24 hours" are designed to create panic.</li>
+            </ul>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="slide" id="slide-3">
+            <h2>3. Social Engineering Tactics</h2>
+            <p>Social engineering targets your psychology. Scammers manipulate your emotions to bypass your logical thinking:</p>
+            <ul>
+                <li><strong>Fear & Panic:</strong> "Unauthorized login detected! Click here to secure your account."</li>
+                <li><strong>Greed & Reward:</strong> "Congratulations! You have won a $500 gift card. Claim it now."</li>
+                <li><strong>Curiosity:</strong> "Is this you in this photo/video?"</li>
+                <li><strong>Authority:</strong> An email pretending to be from your CEO asking for an urgent wire transfer.</li>
+            </ul>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="slide" id="slide-4">
+            <h2>4. Best Practices to Protect Yourself</h2>
+            <p>Keep yourself secure by developing these habits:</p>
+            <ul>
+                <li><strong>Think Before You Click:</strong> Never click links in unsolicited emails.</li>
+                <li><strong>Go Direct:</strong> If your bank emails you an alert, type the bank's URL directly into your browser.</li>
+                <li><strong>Enable 2FA:</strong> Two-Factor Authentication acts as a safety net even if your password is stolen.</li>
+                <li><strong>Report It:</strong> Mark suspicious emails as "Spam" or "Phishing" in your email client.</li>
+            </ul>
+        </div>
+
+        <!-- Slide 5: Quiz -->
+        <div class="slide" id="slide-5">
+            <h2>5. Interactive Knowledge Check</h2>
+            <p>Test what you have learned. Answer all 5 questions below:</p>
+            
+            <form id="quizForm">
+                <div class="question">Q1. Which of these is a major red flag for a phishing email?</div>
+                <div class="options">
+                    <label><input type="radio" name="q1" value="a"> a) It addresses you by your actual full name.</label>
+                    <label><input type="radio" name="q1" value="b"> b) It creates a false sense of urgency or panic.</label>
+                    <label><input type="radio" name="q1" value="c"> c) It contains a detailed, grammatically correct signature.</label>
+                </div>
+                <div class="feedback" id="feed1"></div>
+
+                <div class="question">Q2. You get an email from your bank asking you to click a link to verify your password. You should:</div>
+                <div class="options">
+                    <label><input type="radio" name="q2" value="a"> a) Click the link immediately to secure the account.</label>
+                    <label><input type="radio" name="q2" value="b"> b) Reply to the email asking if it's real.</label>
+                    <label><input type="radio" name="q2" value="c"> c) Ignore the link, open a new tab, and type the bank's official URL.</label>
+                </div>
+                <div class="feedback" id="feed2"></div>
+
+                <div class="question">Q3. "Social Engineering" primarily relies on manipulating:</div>
+                <div class="options">
+                    <label><input type="radio" name="q3" value="a"> a) Human emotions and trust.</label>
+                    <label><input type="radio" name="q3" value="b"> b) Complex firewall configurations.</label>
+                    <label><input type="radio" name="q3" value="c"> c) Outdated antivirus software.</label>
+                </div>
+                <div class="feedback" id="feed3"></div>
+
+                <div class="question">Q4. When checking a website's URL for safety, you should look for:</div>
+                <div class="options">
+                    <label><input type="radio" name="q4" value="a"> a) The website's logo size.</label>
+                    <label><input type="radio" name="q4" value="b"> b) HTTPS and exact spelling of the domain name.</label>
+                    <label><input type="radio" name="q4" value="c"> c) The number of pop-up ads.</label>
+                </div>
+                <div class="feedback" id="feed4"></div>
+
+                <div class="question">Q5. What is the best technical defense to protect your account if a phisher steals your password?</div>
+                <div class="options">
+                    <label><input type="radio" name="q5" value="a"> a) Clearing your browser cache.</label>
+                    <label><input type="radio" name="q5" value="b"> b) Using Incognito Mode.</label>
+                    <label><input type="radio" name="q5" value="c"> c) Two-Factor Authentication (2FA).</label>
+                </div>
+                <div class="feedback" id="feed5"></div>
+
+                <button type="button" class="quiz-submit-btn" onclick="submitQuiz()" id="submitBtn">Submit Quiz & View Answers</button>
+            </form>
+            <div id="finalResult"></div>
+            <br>
+        </div>
+
+    </div>
+
+    <div class="controls">
+        <button id="prevBtn" onclick="changeSlide(-1)" disabled>❮ Previous</button>
+        <span id="slideIndicator" style="font-weight: bold; align-self: center;">Slide 1 of 5</span>
+        <button id="nextBtn" onclick="changeSlide(1)">Next ❯</button>
+    </div>
+</div>
+
+<script>
+    let currentSlideIndex = 1;
+    const totalSlides = 5;
+
+    function changeSlide(direction) {
+        // Hide current
+        document.getElementById('slide-' + currentSlideIndex).classList.remove('active');
+        
+        // Update index
+        currentSlideIndex += direction;
+        
+        // Show new
+        document.getElementById('slide-' + currentSlideIndex).classList.add('active');
+        
+        // Update controls
+        document.getElementById('prevBtn').disabled = currentSlideIndex === 1;
+        document.getElementById('nextBtn').disabled = currentSlideIndex === totalSlides;
+        document.getElementById('slideIndicator').innerText = `Slide ${currentSlideIndex} of ${totalSlides}`;
+        
+        // Scroll to top of the slide wrapper
+        document.querySelector('.slides-wrapper').scrollTop = 0;
+    }
+
+    function submitQuiz() {
+        // Correct answers
+        const answers = { q1: 'b', q2: 'c', q3: 'a', q4: 'b', q5: 'c' };
+        const explanations = {
+            q1: "Correct Answer: b) Phishing emails try to panic you into acting quickly.",
+            q2: "Correct Answer: c) Always go directly to the official website.",
+            q3: "Correct Answer: a) Social engineering hacks human psychology.",
+            q4: "Correct Answer: b) Scammers use slight misspellings of real domains.",
+            q5: "Correct Answer: c) 2FA requires a second step, blocking attackers even if they have your password."
+        };
+
+        let score = 0;
+        let allAnswered = true;
+
+        // Check if all answered
+        for (let i = 1; i <= 5; i++) {
+            if (!document.querySelector(`input[name="q${i}"]:checked`)) {
+                allAnswered = false;
+            }
+        }
+
+        if (!allAnswered) {
+            alert("Please select an answer for all 5 questions before submitting.");
+            return;
+        }
+
+        // Evaluate and Show Feedback
+        for (let i = 1; i <= 5; i++) {
+            let selected = document.querySelector(`input[name="q${i}"]:checked`).value;
+            let feedbackElement = document.getElementById(`feed${i}`);
+            
+            feedbackElement.style.display = "block";
+            
+            if (selected === answers[`q${i}`]) {
+                score++;
+                feedbackElement.innerHTML = `✅ Correct! ${explanations[`q${i}`]}`;
+                feedbackElement.className = "feedback correct-text";
+            } else {
+                feedbackElement.innerHTML = `❌ Incorrect. ${explanations[`q${i}`]}`;
+                feedbackElement.className = "feedback wrong-text";
+            }
+
+            // Disable radio buttons after submission
+            let radios = document.getElementsByName(`q${i}`);
+            for (let radio of radios) {
+                radio.disabled = true;
+            }
+        }
+
+        // Final Score Display
+        let resultDiv = document.getElementById('finalResult');
+        resultDiv.innerText = `You scored ${score} out of 5!`;
+        resultDiv.style.color = score >= 4 ? "#28a745" : "#dc3545";
+        
+        // Disable submit button
+        document.getElementById('submitBtn').disabled = true;
+        document.getElementById('submitBtn').innerText = "Quiz Submitted";
+        document.getElementById('submitBtn').style.background = "#6c757d";
+    }
+</script>
+
+</body>
+</html>
